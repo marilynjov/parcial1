@@ -1,0 +1,21 @@
+.custom-buttonA{
+    margin-top: 10px;
+    background: #3eb750;
+    border-radius: 0px;
+    padding: 5px;
+    border: none;
+    width: 30%;
+    margin:20px;
+}
+
+.custom-buttonB{
+    margin-top: 10px;
+    background: #e41d1d;
+    border-radius: 0px;
+    padding: 5px;
+    border: none;
+    width: 30%;
+    margin:20px;
+
+}
+
