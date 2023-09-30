@@ -45,14 +45,17 @@ function Login() {
     console.log(emailValid);
     console.log(passwordValid);
 
-      if(formData.email==="" && formData.password===""){
+      if(formData.email==="" || formData.password===""){
         setError("Debe ingresar un usuario y contraseña");
       }
-      else if (emailValid  || passwordValid) {
+      else if (!emailValid  || !passwordValid) {
         setError("Error de autenticación. Revise sus credenciales");
       } 
       else {
         setError("");
+        setEmailValid(true);
+        setPasswordValid(true);
+
         setFormData({ email: "", password: "" });
         navigate("/Cafe");
       }
@@ -60,11 +63,13 @@ function Login() {
 
   const cancel = () => {
 
+    setEmailValid(true);
+    setPasswordValid(true);
     setFormData({ email: "", password: "" });
+    setError("")
 
   }
   return (
-    <Form>
 
       <div className='container-fluid'>
 
@@ -144,7 +149,6 @@ function Login() {
         <h2 className='card-text' style={{marginBottom:'20px'}} >Contact us: +57 3102105253 - info@elaromamagico.com - @elaromamagico</h2>
 
       </div>
-    </Form>
   );
 }
 
