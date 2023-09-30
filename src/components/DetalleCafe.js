@@ -22,10 +22,10 @@ function DetalleCafe() {
               align ='center'
             >
 
-            <h3>Cafe nombre</h3>
+            <h3></h3>
 
             <div className='row'>
-                <img className='card-img' src={foto} alt="Ilstracion cafe"></img>
+                <img className='card-img' src={foto} alt="Ilustracion cafe"></img>
             </div>
             <div className='row'>
             <h7>Notas</h7>
