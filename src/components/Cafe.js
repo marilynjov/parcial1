@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import foto from './images/cafe.png';
 import {FormattedMessage} from 'react-intl';
 import React, { useState,  useEffect } from "react";
+import {FormattedDate} from 'react-intl';
+
 import './Login.css'
 
 function Cafe(){
@@ -74,11 +76,19 @@ function Cafe(){
       <div className='col-8' style={{maxWidth:'50%'}}>
         <table className="table">
             <thead className="thead-dark">
-            <tr>
+            <tr className='table-dark'>
             <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Region</th>
+            <th scope="col">
+              <FormattedMessage id="Nombre"/>
+            </th>
+            <th scope="col">
+              <FormattedMessage id="Tipo"/>
+            </th>
+            <th scope="col">
+              <FormattedMessage id="Region"/>
+            </th>
+
+           
           </tr>
           </thead>
             <tbody >
@@ -116,7 +126,10 @@ function Cafe(){
               <td className='card-title'>{selectedCafe.nombre}</td>
               <td>{selectedCafe.fecha_cultivo}</td>
 
+
             </div>
+
+            
 
             <div className='row-flex'>
               <img variant="top" src={selectedCafe.imagen} alt={selectedCafe.title} style={{height:'150px', marginTop:'10px'}} />
@@ -125,9 +138,15 @@ function Cafe(){
             <div> 
               
             <div className='row'>
-              <td className='card-text'>Notas</td> 
-              <td className='card-text'>{selectedCafe.notas}</td>
-              <td className='card-altura'>Cultivado a una altura de {selectedCafe.altura}</td>
+            <th scope="col">
+              <FormattedMessage id="Notas"/>
+            </th>              
+            <td className='card-text'>{selectedCafe.notas}</td>
+            <th className='card-altura' scope="col">
+              <FormattedMessage  id="Cultivado a una altura de "/> {selectedCafe.altura} 
+              <FormattedMessage  id=" msnm"/>
+
+            </th>
 
             </div>
            
@@ -135,10 +154,6 @@ function Cafe(){
           </div>
       )}
        </div>
-
-    {/* <div className='col'>
-      {selectedCafe !== null && <CafeDetail cafeId={selectedCafe} />}        
-    </div> */}
 
     </div>
 
