@@ -48,7 +48,6 @@ function Cafe(){
         }
         const data = await response.json();
         setSelectedCafe(data);
-        console.log("Book details:", data);
       } catch (error) {
         console.error("\n Ha ocurrido un error procesando los datos:", error);
       }
