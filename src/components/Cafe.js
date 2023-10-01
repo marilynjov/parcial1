@@ -3,90 +3,59 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import foto from './images/cafe.png';
-import Detalle from './DetalleCafe.js'
 import {FormattedMessage} from 'react-intl';
-import React, { useState } from 'react';
-import CafeDetail from './DetalleCafe';
-import './Login.css'
-
+import React, { useState,  useEffect } from "react";
 import './Login.css'
 
 function Cafe(){
 
-    
-
-  const cafes = [
-    {
-      id: 1,
-      nombre: "Café Especial para tí",
-      tipo: "Blend",
-      region: "Angelópolis, Antioquia",
-      notas: "Panela, Durazno, Caramelo",
-      fecha_cultivo: "2023-01-18",
-      altura: 1920,
-      imagen:
-        "https://github.com/Uniandes-isis2603/recursos-isis2603/blob/master/images/202310/p2_v1/cafe-especial-para-ti-cafe-colombiano_720x.png?raw=true",
-    },
-    {
-      id: 2,
-      nombre: "Café Especial Navegante",
-      tipo: "Café de Origen",
-      region: "Guatapé, Antioquia",
-      notas: "Cítrico, Naranja, Cacao",
-      fecha_cultivo: "2023-02-10",
-      altura: 1800,
-      imagen:
-        "https://github.com/Uniandes-isis2603/recursos-isis2603/blob/master/images/202310/p2_v1/cafe-especial-navegante-cafe-colombiano-1_720x.png?raw=true",
-    },
-    {
-      id: 3,
-      nombre: "Café Especial El Poeta",
-      tipo: "Blend",
-      region: "Gómez Plata, Antioquia",
-      notas: "Notas Dulces, Vino y Frutos Rojos",
-      fecha_cultivo: "2023-03-11",
-      altura: 1800,
-      imagen:
-        "https://github.com/Uniandes-isis2603/recursos-isis2603/blob/master/images/202310/p2_v1/cafe-especial-poeta-cafe-colombiano_720x.png?raw=true",
-    },
-    {
-      id: 4,
-      nombre: "Café Especial Valentina",
-      tipo: "Café de Origen",
-      region: "Fredonia, Antioquia",
-      notas: "Chocolate, Cáscara de limón, Nuez",
-      altura: 1700,
-      imagen:
-        "https://github.com/Uniandes-isis2603/recursos-isis2603/blob/master/images/202310/p2_v1/cafe-especial-valentina-cafe-colombiano_1_720x.png?raw=true",
-    },
-    {
-      id: 5,
-      nombre: "Café Especial Sombrero Vueltiao",
-      tipo: "Café de Origen",
-      region: "Amagá, Antioquia",
-      notas: "Chocolate, Frutos secos, Frutos rojos, Caña de azúcar",
-      fecha_cultivo: "2023-04-12",
-      altura: 1450,
-      imagen:
-        "https://github.com/Uniandes-isis2603/recursos-isis2603/blob/master/images/202310/p2_v1/cafe-especal-sombrero-vueltiao-2-cafe-colombiano-f_720x.png?raw=true",
-    },
-    {
-      id: 6,
-      nombre: "Café Especial La Guacamaya",
-      tipo: "Café de Origen",
-      region: "Amagá, Antioquia",
-      notas: "Chocolate, Frutos Secos, Frutos Rojos y Caña de Azúcar",
-      fecha_cultivo: "2023-05-13",
-      altura: 1450,
-      imagen:
-        "https://github.com/Uniandes-isis2603/recursos-isis2603/blob/master/images/202310/p2_v1/cafe-especial-guacamayo2-cafe-colombiano-f_720x.png?raw=true",
-    },
-  ];
-  
+  const [cafes, setdata] = useState([]);  
   const [selectedCafe, setSelectedCafe] = useState(null);
+  const[i,seti]=useState(0);
 
+
+   
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/cafes");
+        if (!response.ok) {
+          throw new Error("Error al obtener la informacion de los cafes");
+        }
+        const cafes = await response.json();
+        console.log(cafes)
+        setdata(cafes);
+        
+      } catch (error) {
+        console.error("\n Ha ocurrido un error procesando los datos:", error);
+      }
+    };
+    fetchData();
+  },[]);
+
+
+  const fetchdetalle = async (id) => {
+    
+      try {
+        const peticion = "http://localhost:3001/cafes/" + id;
+        console.log(peticion);
+        const response = await fetch(peticion);
+        console.log(response) 
+        if (!response.ok) {
+          throw new Error("Error al obtener los detalles del libro");
+        }
+        const data = await response.json();
+        setSelectedCafe(data);
+        console.log("Book details:", data);
+      } catch (error) {
+        console.error("\n Ha ocurrido un error procesando los datos:", error);
+      }
+    
+  };
+
+        
   const handleClick = (cafeId) => {
-    setSelectedCafe(cafes[cafeId-1]);
+    fetchdetalle(cafeId)
   };
 
 
@@ -107,19 +76,12 @@ function Cafe(){
             <thead className="thead-dark">
             <tr>
             <th scope="col">#</th>
-            <th scope="col">
-              <FormattedMessage id="Nombre"/>
-            </th>
-            <th scope="col">
-              <FormattedMessage id="Tipo"/>
-            </th>
-            <th scope="col">
-              <FormattedMessage id="Region"/> 
-            </th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Region</th>
           </tr>
           </thead>
             <tbody >
-
             {cafes.map((cafe) => (
               <tr key={cafe.id} >
           
@@ -132,9 +94,9 @@ function Cafe(){
                   {cafe.tipo}</td>
                 <td onClick={() => handleClick(cafe.id)}>
                   {cafe.region}</td>
+
               </tr>
             ))}
-              
             </tbody>
         </table>
 
