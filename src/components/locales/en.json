@@ -1,9 +1,9 @@
 {
     "Nombre":"Name",
     "Tipo":"Type",
-    "Region": "Region",
+    "Región": "Region",
     "Notas": "Notes",
-    "CultivadoAltura":"Grown at a height of ",
+    "Cultivado a una altura de ":"Grown at a height of ",
     " msnm":" masl"
 
 }

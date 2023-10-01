@@ -10,7 +10,7 @@ import localeEnMessages from "./components/locales/en";
 
 
 const browserLocale = navigator.language || navigator.userLanguage;
-const messages = browserLocale.startsWith('es') ? localeEnMessages : localeEsMessages;
+const messages = browserLocale.startsWith('en') ? localeEnMessages : localeEsMessages;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

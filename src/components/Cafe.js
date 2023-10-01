@@ -85,7 +85,7 @@ function Cafe(){
               <FormattedMessage id="Tipo"/>
             </th>
             <th scope="col">
-              <FormattedMessage id="Region"/>
+              <FormattedMessage id="Región"/>
             </th>
 
            

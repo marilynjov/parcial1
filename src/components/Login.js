@@ -61,16 +61,18 @@ function Login() {
       }
   };
 
-  const cancel = () => {
-
+  const cancel = (e) => {
+    setError("");
     setEmailValid(true);
     setPasswordValid(true);
+
     setFormData({ email: "", password: "" });
-    setError("")
+    navigate("/ ");
 
   }
-  return (
 
+  return (
+<Form>
       <div className='container-fluid'>
 
         <h3 className='titulo' align='left'>  El aroma mágico</h3>
@@ -137,7 +139,8 @@ function Login() {
 
                 <div align='left' className="row" style={{marginLeft:"15%"}}>
 
-                {error && <div className="alert" role='alert'> {error} </div>}
+                  {error && <div className="alert" role='alert'> {error} </div>}
+
                 </div>
               </div>
             </div>
@@ -149,6 +152,8 @@ function Login() {
         <h2 className='card-text' style={{marginBottom:'20px'}} >Contact us: +57 3102105253 - info@elaromamagico.com - @elaromamagico</h2>
 
       </div>
+
+      </Form>
   );
 }
 
